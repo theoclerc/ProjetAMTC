@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TP1AMTC;
 
 namespace ProjetAMTC
 {
@@ -21,6 +15,8 @@ namespace ProjetAMTC
         private double[,] yEdgeDetectionMatrix = null;
         private string selectedXEdgeDetection = null; // Store the selected items
         private string selectedYEdgeDetection = null; // Store the selected items
+        private IImageLoader fileLoader = new ImageLoader();
+        private IImageSaver imageSaver = new ImageSaver();
 
         public Form1()
         {
@@ -41,17 +37,18 @@ namespace ProjetAMTC
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // Read the selected image file
-                StreamReader streamReader = new StreamReader(ofd.FileName);
-                originalBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
-                streamReader.Close();
+                // Use the file loader to load the image
+                originalBitmap = fileLoader.LoadImageFromFile(ofd.FileName);
 
-                // Copy the original image to a square canvas and display it
-                //resultBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
-                picPreview.Image = resultBitmap;
+                if (originalBitmap != null)
+                {
+                    // Copy the original image to a square canvas and display it
+                    resultBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
+                    picPreview.Image = resultBitmap;
 
-                // Apply the default edge detection method
-                ApplyEdgeDetection(true);
+                    // Apply the default edge detection method
+                    ApplyEdgeDetection(true);
+                }
             }
         }
 
@@ -84,10 +81,7 @@ namespace ProjetAMTC
                     }
 
                     // Save the result image with the specified format
-                    StreamWriter streamWriter = new StreamWriter(sfd.FileName, false);
-                    resultBitmap.Save(streamWriter.BaseStream, imgFormat);
-                    streamWriter.Flush();
-                    streamWriter.Close();
+                    imageSaver.SaveImage(resultBitmap, sfd.FileName, imgFormat);
 
                     // Reset the result image and edge detection method
                     resultBitmap = null;
