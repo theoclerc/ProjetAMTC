@@ -252,33 +252,6 @@ namespace ProjetAMTC
             }
         }
 
-        private void buttonRainbowFilter_Click(object sender, EventArgs e)
-        {
-            // Apply the rainbow filter and reset the edge detection method
-            //resultBitmap = ImageFilters.RainbowFilter(new Bitmap(picPreview.Image));
-            pictureModified.Image = resultBitmap;
-            xEdgeDetection.SelectedIndex = 0;
-            yEdgeDetection.SelectedIndex = 0;
-        }
-
-        private void buttonNightFilter_Click(object sender, EventArgs e)
-        {
-            // Apply the night filter and reset the edge detection method
-            //resultBitmap = ImageFilters.ApplyFilter(new Bitmap(picPreview.Image), 1, 1, 1, 25);
-            pictureModified.Image = resultBitmap;
-            xEdgeDetection.SelectedIndex = 0;
-            yEdgeDetection.SelectedIndex = 0;
-        }
-
-        private void buttonNoFilter_Click(object sender, EventArgs e)
-        {
-            // Remove any filter and reset the edge detection method
-            pictureModified.Image = picPreview.Image;
-            resultBitmap = (Bitmap)picPreview.Image;
-            xEdgeDetection.SelectedIndex = 0;
-            yEdgeDetection.SelectedIndex = 0;
-        }
-
         private void buttonApply_Click(object sender, EventArgs e)
         {
             // Check if both combo boxes have selected items
@@ -303,6 +276,62 @@ namespace ProjetAMTC
         {
             // Update yEdgeDetectionMatrix according to selection
             selectedYEdgeDetection = yEdgeDetection.SelectedItem.ToString();
+        }
+
+        private void RainbowFiltercheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Apply the rainbow filter and reset the edge detection method
+            resultBitmap = RainbowFilter.ApplyRainbowFilter(new Bitmap(picPreview.Image));
+            pictureModified.Image = resultBitmap;
+            xEdgeDetection.SelectedIndex = 0;
+            yEdgeDetection.SelectedIndex = 0;
+        }
+
+        private void NightFilterCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Apply the night filter and reset the edge detection method
+            resultBitmap = NightFilter.ApplyNightFilter(new Bitmap(picPreview.Image), 1, 1, 1, 25);
+            pictureModified.Image = resultBitmap;
+            xEdgeDetection.SelectedIndex = 0;
+            yEdgeDetection.SelectedIndex = 0;
+        }
+
+        private void BlackWhiteFilterCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            //resultBitmap = BlackWhiteFilter.ApplyBlackWhite(new Bitmap(picPreview.Image), 1, 1, 1, 25);
+            pictureModified.Image = resultBitmap;
+            xEdgeDetection.SelectedIndex = 0;
+            yEdgeDetection.SelectedIndex = 0;
+        }
+
+        private void LaplacianXRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            /// EDGE DETECTION
+        }
+
+        private void Kirsch3x3HXRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            /// EDGE DETECTION
+        }
+
+        private void Kirsch3x3VXRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            /// EDGE DETECTION
+        }
+
+        private void LaplacianYRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            /// EDGE DETECTION
+        }
+
+        private void Kirsch3x3HYRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            /// EDGE DETECTION
+        }
+
+        private void Kirsch3x3VYRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            /// EDGE DETECTION
         }
     }
 }
