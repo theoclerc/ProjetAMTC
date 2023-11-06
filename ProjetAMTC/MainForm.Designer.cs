@@ -1,6 +1,6 @@
 ﻿namespace ProjetAMTC
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,9 +40,6 @@
             this.LaplacianYRadioButton = new System.Windows.Forms.RadioButton();
             this.Kirsch3x3HYRadioButton = new System.Windows.Forms.RadioButton();
             this.Kirsch3x3VYRadioButton = new System.Windows.Forms.RadioButton();
-            this.yEdgeDetection = new System.Windows.Forms.ComboBox();
-            this.xEdgeDetection = new System.Windows.Forms.ComboBox();
-            this.buttonApply = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureModified)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -88,7 +85,7 @@
             this.label1.Location = new System.Drawing.Point(545, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Filters";
             // 
@@ -108,7 +105,7 @@
             this.RainbowFiltercheckBox.AutoSize = true;
             this.RainbowFiltercheckBox.Location = new System.Drawing.Point(557, 59);
             this.RainbowFiltercheckBox.Name = "RainbowFiltercheckBox";
-            this.RainbowFiltercheckBox.Size = new System.Drawing.Size(114, 20);
+            this.RainbowFiltercheckBox.Size = new System.Drawing.Size(93, 17);
             this.RainbowFiltercheckBox.TabIndex = 61;
             this.RainbowFiltercheckBox.Text = "Rainbow Filter";
             this.RainbowFiltercheckBox.UseVisualStyleBackColor = true;
@@ -119,7 +116,7 @@
             this.NightFilterCheckBox.AutoSize = true;
             this.NightFilterCheckBox.Location = new System.Drawing.Point(557, 85);
             this.NightFilterCheckBox.Name = "NightFilterCheckBox";
-            this.NightFilterCheckBox.Size = new System.Drawing.Size(92, 20);
+            this.NightFilterCheckBox.Size = new System.Drawing.Size(76, 17);
             this.NightFilterCheckBox.TabIndex = 62;
             this.NightFilterCheckBox.Text = "Night Filter";
             this.NightFilterCheckBox.UseVisualStyleBackColor = true;
@@ -130,7 +127,7 @@
             this.BlackWhiteFilterCheckBox.AutoSize = true;
             this.BlackWhiteFilterCheckBox.Location = new System.Drawing.Point(557, 111);
             this.BlackWhiteFilterCheckBox.Name = "BlackWhiteFilterCheckBox";
-            this.BlackWhiteFilterCheckBox.Size = new System.Drawing.Size(132, 20);
+            this.BlackWhiteFilterCheckBox.Size = new System.Drawing.Size(109, 17);
             this.BlackWhiteFilterCheckBox.TabIndex = 63;
             this.BlackWhiteFilterCheckBox.Text = "Black White Filter";
             this.BlackWhiteFilterCheckBox.UseVisualStyleBackColor = true;
@@ -141,7 +138,7 @@
             this.LaplacianXRadioButton.AutoSize = true;
             this.LaplacianXRadioButton.Location = new System.Drawing.Point(37, 21);
             this.LaplacianXRadioButton.Name = "LaplacianXRadioButton";
-            this.LaplacianXRadioButton.Size = new System.Drawing.Size(110, 20);
+            this.LaplacianXRadioButton.Size = new System.Drawing.Size(91, 17);
             this.LaplacianXRadioButton.TabIndex = 71;
             this.LaplacianXRadioButton.Text = "Laplacian 3x3";
             this.LaplacianXRadioButton.UseVisualStyleBackColor = true;
@@ -152,7 +149,7 @@
             this.Kirsch3x3HXRadioButton.AutoSize = true;
             this.Kirsch3x3HXRadioButton.Location = new System.Drawing.Point(37, 47);
             this.Kirsch3x3HXRadioButton.Name = "Kirsch3x3HXRadioButton";
-            this.Kirsch3x3HXRadioButton.Size = new System.Drawing.Size(150, 20);
+            this.Kirsch3x3HXRadioButton.Size = new System.Drawing.Size(124, 17);
             this.Kirsch3x3HXRadioButton.TabIndex = 72;
             this.Kirsch3x3HXRadioButton.Text = "Kirsch 3x3 Horizontal";
             this.Kirsch3x3HXRadioButton.UseVisualStyleBackColor = true;
@@ -163,7 +160,7 @@
             this.Kirsch3x3VXRadioButton.AutoSize = true;
             this.Kirsch3x3VXRadioButton.Location = new System.Drawing.Point(37, 70);
             this.Kirsch3x3VXRadioButton.Name = "Kirsch3x3VXRadioButton";
-            this.Kirsch3x3VXRadioButton.Size = new System.Drawing.Size(135, 20);
+            this.Kirsch3x3VXRadioButton.Size = new System.Drawing.Size(112, 17);
             this.Kirsch3x3VXRadioButton.TabIndex = 73;
             this.Kirsch3x3VXRadioButton.Text = "Kirsch 3x3 Vertical";
             this.Kirsch3x3VXRadioButton.UseVisualStyleBackColor = true;
@@ -198,7 +195,7 @@
             this.LaplacianYRadioButton.AutoSize = true;
             this.LaplacianYRadioButton.Location = new System.Drawing.Point(37, 21);
             this.LaplacianYRadioButton.Name = "LaplacianYRadioButton";
-            this.LaplacianYRadioButton.Size = new System.Drawing.Size(110, 20);
+            this.LaplacianYRadioButton.Size = new System.Drawing.Size(91, 17);
             this.LaplacianYRadioButton.TabIndex = 71;
             this.LaplacianYRadioButton.Text = "Laplacian 3x3";
             this.LaplacianYRadioButton.UseVisualStyleBackColor = true;
@@ -209,7 +206,7 @@
             this.Kirsch3x3HYRadioButton.AutoSize = true;
             this.Kirsch3x3HYRadioButton.Location = new System.Drawing.Point(37, 47);
             this.Kirsch3x3HYRadioButton.Name = "Kirsch3x3HYRadioButton";
-            this.Kirsch3x3HYRadioButton.Size = new System.Drawing.Size(150, 20);
+            this.Kirsch3x3HYRadioButton.Size = new System.Drawing.Size(124, 17);
             this.Kirsch3x3HYRadioButton.TabIndex = 72;
             this.Kirsch3x3HYRadioButton.Text = "Kirsch 3x3 Horizontal";
             this.Kirsch3x3HYRadioButton.UseVisualStyleBackColor = true;
@@ -220,90 +217,26 @@
             this.Kirsch3x3VYRadioButton.AutoSize = true;
             this.Kirsch3x3VYRadioButton.Location = new System.Drawing.Point(37, 70);
             this.Kirsch3x3VYRadioButton.Name = "Kirsch3x3VYRadioButton";
-            this.Kirsch3x3VYRadioButton.Size = new System.Drawing.Size(135, 20);
+            this.Kirsch3x3VYRadioButton.Size = new System.Drawing.Size(112, 17);
             this.Kirsch3x3VYRadioButton.TabIndex = 73;
             this.Kirsch3x3VYRadioButton.Text = "Kirsch 3x3 Vertical";
             this.Kirsch3x3VYRadioButton.UseVisualStyleBackColor = true;
             this.Kirsch3x3VYRadioButton.CheckedChanged += new System.EventHandler(this.Kirsch3x3VYRadioButton_CheckedChanged);
             // 
-            // yEdgeDetection
+            // MainForm
             // 
-            this.yEdgeDetection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.yEdgeDetection.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yEdgeDetection.FormattingEnabled = true;
-            this.yEdgeDetection.Items.AddRange(new object[] {
-            "None",
-            "Laplacian 3x3",
-            "Laplacian 5x5",
-            "LaplacianOfGaussian",
-            "Gaussian3x3",
-            "Gaussian5x5Type1",
-            "Gaussian5x5Type2",
-            "Sobel3x3Horizontal",
-            "Sobel3x3Vertical",
-            "Prewitt3x3Horizontal",
-            "Prewitt3x3Vertical",
-            "Kirsch3x3Horizontal",
-            "Kirsch3x3Vertical"});
-            this.yEdgeDetection.Location = new System.Drawing.Point(1148, 375);
-            this.yEdgeDetection.Name = "yEdgeDetection";
-            this.yEdgeDetection.Size = new System.Drawing.Size(279, 37);
-            this.yEdgeDetection.TabIndex = 54;
-            this.yEdgeDetection.SelectedIndexChanged += new System.EventHandler(this.yEdgeDetection_SelectedIndexChanged);
-            // 
-            // xEdgeDetection
-            // 
-            this.xEdgeDetection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.xEdgeDetection.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xEdgeDetection.FormattingEnabled = true;
-            this.xEdgeDetection.Items.AddRange(new object[] {
-            "None",
-            "Laplacian 3x3",
-            "Laplacian 5x5",
-            "LaplacianOfGaussian",
-            "Gaussian3x3",
-            "Gaussian5x5Type1",
-            "Gaussian5x5Type2",
-            "Sobel3x3Horizontal",
-            "Sobel3x3Vertical",
-            "Prewitt3x3Horizontal",
-            "Prewitt3x3Vertical",
-            "Kirsch3x3Horizontal",
-            "Kirsch3x3Vertical"});
-            this.xEdgeDetection.Location = new System.Drawing.Point(1148, 299);
-            this.xEdgeDetection.Name = "xEdgeDetection";
-            this.xEdgeDetection.Size = new System.Drawing.Size(279, 37);
-            this.xEdgeDetection.TabIndex = 50;
-            this.xEdgeDetection.SelectedIndexChanged += new System.EventHandler(this.xEdgeDetection_SelectedIndexChanged);
-            // 
-            // buttonApply
-            // 
-            this.buttonApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonApply.Location = new System.Drawing.Point(1148, 448);
-            this.buttonApply.Name = "buttonApply";
-            this.buttonApply.Size = new System.Drawing.Size(279, 38);
-            this.buttonApply.TabIndex = 56;
-            this.buttonApply.Text = "Apply Edges Detection";
-            this.buttonApply.UseVisualStyleBackColor = true;
-            this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
-            // 
-            // Form1
-            // 
-            this.ClientSize = new System.Drawing.Size(1486, 732);
+            this.ClientSize = new System.Drawing.Size(849, 732);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BlackWhiteFilterCheckBox);
             this.Controls.Add(this.NightFilterCheckBox);
             this.Controls.Add(this.RainbowFiltercheckBox);
-            this.Controls.Add(this.buttonApply);
-            this.Controls.Add(this.yEdgeDetection);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.xEdgeDetection);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureModified);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.picPreview);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureModified)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -334,9 +267,6 @@
         private System.Windows.Forms.RadioButton LaplacianYRadioButton;
         private System.Windows.Forms.RadioButton Kirsch3x3HYRadioButton;
         private System.Windows.Forms.RadioButton Kirsch3x3VYRadioButton;
-        private System.Windows.Forms.ComboBox yEdgeDetection;
-        private System.Windows.Forms.ComboBox xEdgeDetection;
-        private System.Windows.Forms.Button buttonApply;
     }
 }
 
