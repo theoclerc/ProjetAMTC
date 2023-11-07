@@ -13,6 +13,7 @@ namespace ProjetAMTC
     {
         private Bitmap originalBitmap = null;
         private Bitmap resultBitmap = null;
+        private Bitmap filterBitmap = null;
         double[,] selectedXMatrix = null;
         double[,] selectedYMatrix = null;
         private IImageLoader fileLoader = new ImageLoader();
@@ -87,8 +88,8 @@ namespace ProjetAMTC
                     NightFilterCheckBox.Checked = false;
                     BlackWhiteFilterCheckBox.Checked = false;
                     CheckedEdgesButtons(false);
-
-
+                    selectedXMatrix = null;
+                    selectedYMatrix = null;
                 }
             }
         }
@@ -96,63 +97,6 @@ namespace ProjetAMTC
         private void ApplyEdgeDetection(Bitmap source, double[,] xMatrix, double[,] yMatrix, bool preview)
         {
             Bitmap result = edgeDetectionManager.ApplyEdgeDetection(source, xMatrix, yMatrix, preview);
-            pictureModified.Image = result;
-        }
-
-        /*private void ApplyEdgeDetection(Bitmap source, double[,] xMatrix, double[,] yMatrix, bool preview)
-        {
-            if (source == null)
-            {
-                return;
-            }
-
-            int width = source.Width;
-            int height = source.Height;
-            Bitmap result = new Bitmap(width, height);
-
-            if (xMatrix == null && yMatrix == null)
-            {
-                // No edge detection selected, return the original image
-                if (preview)
-                {
-                    pictureModified.Image = source;
-                }
-                else
-                {
-                    resultBitmap = source;
-                    pictureModified.Image = resultBitmap;
-                }
-                return;
-            }
-
-            for (int y = 1; y < height - 1; y++)
-            {
-                for (int x = 1; x < width - 1; x++)
-                {
-                    double xGradient = 0.0;
-                    double yGradient = 0.0;
-
-                    // Calculate gradients using xMatrix and yMatrix
-                    for (int j = -1; j <= 1; j++)
-                    {
-                        for (int i = -1; i <= 1; i++)
-                        {
-                            Color neighborColor = source.GetPixel(x + i, y + j);
-                            double grayValue = neighborColor.R * 0.3 + neighborColor.G * 0.59 + neighborColor.B * 0.11;
-                            xGradient += grayValue * xMatrix[i + 1, j + 1];
-                            yGradient += grayValue * yMatrix[i + 1, j + 1];
-                        }
-                    }
-
-                    // Calculate the magnitude of the gradient
-                    double gradientMagnitude = Math.Sqrt(xGradient * xGradient + yGradient * yGradient);
-
-                    // Apply the gradient magnitude as a new pixel value
-                    int newValue = (int)Math.Max(0, Math.Min(255, gradientMagnitude));
-                    result.SetPixel(x, y, Color.FromArgb(newValue, newValue, newValue));
-                }
-            }
-
             if (preview)
             {
                 pictureModified.Image = result;
@@ -162,9 +106,7 @@ namespace ProjetAMTC
                 resultBitmap = result;
                 pictureModified.Image = resultBitmap;
             }
-        } */
-
-
+        }
 
         private void ApplySelectedFilters()
         {
@@ -213,6 +155,7 @@ namespace ProjetAMTC
             else
             {
                 pictureModified.Image = resultBitmap;
+                filterBitmap = resultBitmap;
             }
         }
 
@@ -231,30 +174,43 @@ namespace ProjetAMTC
             ApplySelectedFilters();
         }
 
-        //LISTE A
         private void LaplacianXRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             selectedXMatrix = Matrix.Laplacian3x3;
+
+            if(selectedYMatrix != null)
+            {
+                ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
+            }
         }
 
         private void Kirsch3x3HXRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             selectedXMatrix = Matrix.Kirsch3x3Horizontal;
+
+            if (selectedYMatrix != null)
+            {
+                ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
+            }
         }
 
         private void Kirsch3x3VXRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             selectedXMatrix = Matrix.Kirsch3x3Vertical;
+
+            if (selectedYMatrix != null)
+            {
+                ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
+            }
         }
 
-        // Liste B
         private void LaplacianYRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             selectedYMatrix = Matrix.Laplacian3x3;
 
             if (selectedYMatrix != null)
             {
-                ApplyEdgeDetection(resultBitmap, selectedXMatrix, selectedYMatrix, false);
+                ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
             }
         }
 
@@ -264,7 +220,7 @@ namespace ProjetAMTC
 
             if (selectedYMatrix != null)
             {
-                ApplyEdgeDetection(resultBitmap, selectedXMatrix, selectedYMatrix, false);
+                ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
             }
         }
 
@@ -274,7 +230,7 @@ namespace ProjetAMTC
 
             if (selectedYMatrix != null)
             {
-                ApplyEdgeDetection(resultBitmap, selectedXMatrix, selectedYMatrix, false);
+                ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
             }
         }
 
