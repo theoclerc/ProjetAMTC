@@ -4,11 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetAMTC", "ProjetAMTC\ProjetAMTC.csproj", "{E5F6FE24-2B5A-4E5B-9BFD-28AE1A101160}"
-	ProjectSection(ProjectDependencies) = postProject
-		{CD56123B-8830-4931-9B4F-2DA4730E22B0} = {CD56123B-8830-4931-9B4F-2DA4730E22B0}
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetAMTC_test", "ProjetAMTC_test\ProjetAMTC_test.csproj", "{CD56123B-8830-4931-9B4F-2DA4730E22B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetAMTC_Test", "ProjetAMTC_Test\ProjetAMTC_Test.csproj", "{CFB8597A-B05E-471C-AE6C-FB1CC40206A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +17,10 @@ Global
 		{E5F6FE24-2B5A-4E5B-9BFD-28AE1A101160}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5F6FE24-2B5A-4E5B-9BFD-28AE1A101160}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5F6FE24-2B5A-4E5B-9BFD-28AE1A101160}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD56123B-8830-4931-9B4F-2DA4730E22B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD56123B-8830-4931-9B4F-2DA4730E22B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD56123B-8830-4931-9B4F-2DA4730E22B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD56123B-8830-4931-9B4F-2DA4730E22B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB8597A-B05E-471C-AE6C-FB1CC40206A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB8597A-B05E-471C-AE6C-FB1CC40206A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB8597A-B05E-471C-AE6C-FB1CC40206A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB8597A-B05E-471C-AE6C-FB1CC40206A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

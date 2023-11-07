@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetAMTC
 {
-    internal interface IImageLoader
+    public interface IImageLoader
     {
         Bitmap LoadImageFromFile(string filePath);
     }
