@@ -28,7 +28,9 @@ namespace ProjetAMTC
                 MessageBox.Show("Error loading the image: " + ex.Message);
             }
             return loadedImage;
+
         }
+
     }
 
 }
