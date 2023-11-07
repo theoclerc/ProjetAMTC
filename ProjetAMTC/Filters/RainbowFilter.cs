@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetAMTC.Filters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace ProjetAMTC
 {
-    public static class RainbowFilter
+    public class RainbowFilter : IImageFilter
     {
-        public static Bitmap ApplyRainbowFilter(Bitmap bmp)
+        // Method to apply the rainbow filter
+        public Bitmap ApplyFilter(Bitmap bmp)
         {
             // Create a new temporary image with the same dimensions as the input image
             Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
 
             // Calculate the size of a vertical band to divide the image into four bands
-            int raz = bmp.Height / 4;
+            int verticalBandSize = bmp.Height / 4;
 
             // Iterate through each pixel of the input image
             for (int i = 0; i < bmp.Width; i++)
@@ -31,19 +33,19 @@ namespace ProjetAMTC
                     int blue = pixelColor.B / 5;
 
                     // Apply a rainbow filter based on the horizontal position of the pixel
-                    if (i < raz)
+                    if (i < verticalBandSize)
                     {
                         temp.SetPixel(i, x, Color.FromArgb(red, pixelColor.G, pixelColor.B));
                     }
-                    else if (i < raz * 2)
+                    else if (i < verticalBandSize * 2)
                     {
                         temp.SetPixel(i, x, Color.FromArgb(pixelColor.R, green, pixelColor.B));
                     }
-                    else if (i < raz * 3)
+                    else if (i < verticalBandSize * 3)
                     {
                         temp.SetPixel(i, x, Color.FromArgb(pixelColor.R, pixelColor.G, blue));
                     }
-                    else if (i < raz * 4)
+                    else if (i < verticalBandSize * 4)
                     {
                         temp.SetPixel(i, x, Color.FromArgb(red, pixelColor.G, blue));
                     }
@@ -53,6 +55,7 @@ namespace ProjetAMTC
                     }
                 }
             }
+
             // Return the filtered image
             return temp;
         }

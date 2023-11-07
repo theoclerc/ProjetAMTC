@@ -58,7 +58,8 @@
   <ItemGroup>
     <Compile Include="Edges Detections\EdgeDetectionManager.cs" />
     <Compile Include="Edges Detections\IEdgeDetectionManager.cs" />
-    <Compile Include="ExtBitmap.cs" />
+    <Compile Include="Edges Detections\ExtBitmap.cs" />
+    <Compile Include="Filters\IImageFilter.cs" />
     <Compile Include="Image Manipulation\IImageSaver.cs" />
     <Compile Include="Image Manipulation\ImageLoader.cs" />
     <Compile Include="Filters\BlackWhiteFilter.cs" />
@@ -70,7 +71,7 @@
     </Compile>
     <Compile Include="Image Manipulation\IImageLoader.cs" />
     <Compile Include="Image Manipulation\ImageSaver.cs" />
-    <Compile Include="Matrix.cs" />
+    <Compile Include="Edges Detections\Matrix.cs" />
     <Compile Include="Filters\NightFilter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,7 +88,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="invalidFormat.tkt">
+    <None Include="TestFiles\invalidFormat.tkt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -105,7 +106,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="imageTest.jpg">
+    <Content Include="TestFiles\imageTest.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

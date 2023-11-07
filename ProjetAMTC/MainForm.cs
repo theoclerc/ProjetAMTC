@@ -1,4 +1,5 @@
 ﻿using ProjetAMTC.Edges_Detections;
+using ProjetAMTC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -19,6 +20,10 @@ namespace ProjetAMTC
         private IImageLoader fileLoader = new ImageLoader();
         private IImageSaver imageSaver = new ImageSaver();
         private IEdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+        private IImageFilter nightFilter = new NightFilter(1,1,1,25);
+        private IImageFilter blackWhiteFilter = new BlackWhiteFilter();
+        private IImageFilter rainbowFilter = new RainbowFilter();
+
 
         public MainForm()
         {
@@ -96,11 +101,15 @@ namespace ProjetAMTC
 
         private void ApplyEdgeDetection(Bitmap source, double[,] xMatrix, double[,] yMatrix, bool preview)
         {
+            // Apply edge detection to the source image
             Bitmap result = edgeDetectionManager.ApplyEdgeDetection(source, xMatrix, yMatrix, preview);
+
+            // If preview is enabled, display the result in the preview picture box
             if (preview)
             {
                 pictureModified.Image = result;
             }
+            // Otherwise, set the result as the main result bitmap and update the displayed image
             else
             {
                 resultBitmap = result;
@@ -112,42 +121,47 @@ namespace ProjetAMTC
         {
             bool filtersApplied = false;
 
-            // Crée une copie de l'image originale pour la modification
+            // Create a copy of the original image for modification
             if (picPreview.Image != null)
             {
                 resultBitmap = new Bitmap(picPreview.Image);
             }
 
+            // Apply Rainbow filter if selected
             if (RainbowFiltercheckBox.Checked)
             {
                 if (resultBitmap != null)
                 {
-                    resultBitmap = RainbowFilter.ApplyRainbowFilter(resultBitmap);
+                    resultBitmap = rainbowFilter.ApplyFilter(resultBitmap);
                     filtersApplied = true;
                 }
             }
 
+            // Apply Night filter if selected
             if (NightFilterCheckBox.Checked)
             {
                 if (resultBitmap != null)
                 {
-                    resultBitmap = NightFilter.ApplyNightFilter(resultBitmap, 1, 1, 1, 25);
+                    resultBitmap = nightFilter.ApplyFilter(resultBitmap);
                     filtersApplied = true;
                 }
             }
 
+            // Apply Black and White filter if selected
             if (BlackWhiteFilterCheckBox.Checked)
             {
                 if (resultBitmap != null)
                 {
-                    resultBitmap = BlackWhiteFilter.ApplyBlackWhite(resultBitmap);
+                    resultBitmap = blackWhiteFilter.ApplyFilter(resultBitmap);
                     filtersApplied = true;
                 }
             }
 
+            // Disable edge detection buttons and enable filters buttons based on whether filters were applied
             CheckedEdgesButtons(false);
             EnableEdgesButtons(filtersApplied);
 
+            // Update the displayed image based on whether filters were applied
             if (!filtersApplied)
             {
                 pictureModified.Image = picPreview.Image;
@@ -178,7 +192,8 @@ namespace ProjetAMTC
         {
             selectedXMatrix = Matrix.Laplacian3x3;
 
-            if(selectedYMatrix != null)
+            // If the Y matrix is also selected, apply edge detection
+            if (selectedYMatrix != null)
             {
                 ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
             }
@@ -188,6 +203,7 @@ namespace ProjetAMTC
         {
             selectedXMatrix = Matrix.Kirsch3x3Horizontal;
 
+            // If the Y matrix is also selected, apply edge detection
             if (selectedYMatrix != null)
             {
                 ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
@@ -198,6 +214,7 @@ namespace ProjetAMTC
         {
             selectedXMatrix = Matrix.Kirsch3x3Vertical;
 
+            // If the Y matrix is also selected, apply edge detection
             if (selectedYMatrix != null)
             {
                 ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
@@ -208,6 +225,7 @@ namespace ProjetAMTC
         {
             selectedYMatrix = Matrix.Laplacian3x3;
 
+            // If the X matrix is also selected, apply edge detection
             if (selectedYMatrix != null)
             {
                 ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
@@ -218,6 +236,7 @@ namespace ProjetAMTC
         {
             selectedYMatrix = Matrix.Kirsch3x3Horizontal;
 
+            // If the X matrix is also selected, apply edge detection
             if (selectedYMatrix != null)
             {
                 ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
@@ -228,12 +247,14 @@ namespace ProjetAMTC
         {
             selectedYMatrix = Matrix.Kirsch3x3Vertical;
 
+            // If the X matrix is also selected, apply edge detection
             if (selectedYMatrix != null)
             {
                 ApplyEdgeDetection(filterBitmap, selectedXMatrix, selectedYMatrix, false);
             }
         }
 
+        // Enable or disable edge detection buttons
         private void EnableEdgesButtons(bool instruction)
         {
             LaplacianXRadioButton.Enabled = instruction;
@@ -244,6 +265,7 @@ namespace ProjetAMTC
             Kirsch3x3VYRadioButton.Enabled = instruction;
         }
 
+        // Check or uncheck edge detection buttons
         private void CheckedEdgesButtons(bool instruction)
         {
             LaplacianXRadioButton.Checked = instruction;
@@ -254,13 +276,12 @@ namespace ProjetAMTC
             Kirsch3x3VYRadioButton.Checked = instruction;
         }
 
+        // Enable or disable filter buttons
         private void EnableFiltersButtons(bool instruction)
         {
             RainbowFiltercheckBox.Enabled = instruction;
             NightFilterCheckBox.Enabled = instruction;
             BlackWhiteFilterCheckBox.Enabled = instruction;
         }
-
-
     }
 }

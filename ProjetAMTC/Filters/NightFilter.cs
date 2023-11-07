@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetAMTC.Filters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,9 +8,24 @@ using System.Threading.Tasks;
 
 namespace ProjetAMTC
 {
-    public static class NightFilter
+    public class NightFilter : IImageFilter
     {
-        public static Bitmap ApplyNightFilter(Bitmap bmp, int alpha, int red, int blue, int green)
+        private int alpha;
+        private int red;
+        private int blue;
+        private int green;
+
+        // Constructor to initialize filter parameters
+        public NightFilter(int alpha, int red, int blue, int green)
+        {
+            this.alpha = alpha;
+            this.red = red;
+            this.blue = blue;
+            this.green = green;
+        }
+
+        // Method to apply the night filter
+        public Bitmap ApplyFilter(Bitmap bmp)
         {
             // Create a new temporary image with the same dimensions as the input image
             Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
@@ -34,9 +50,9 @@ namespace ProjetAMTC
                     temp.SetPixel(i, x, newColor);
                 }
             }
+
             // Return the filtered image
             return temp;
         }
-
     }
 }
