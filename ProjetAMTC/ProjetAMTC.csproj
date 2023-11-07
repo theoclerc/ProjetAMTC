@@ -57,9 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Edges Detections\EdgeDetectionManager.cs" />
+    <Compile Include="Edges Detections\IEdgeDetectionManager.cs" />
     <Compile Include="ExtBitmap.cs" />
-    <Compile Include="IImageSaver.cs" />
-    <Compile Include="ImageLoader.cs" />
+    <Compile Include="Image Manipulation\IImageSaver.cs" />
+    <Compile Include="Image Manipulation\ImageLoader.cs" />
     <Compile Include="Filters\BlackWhiteFilter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -67,8 +68,8 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IImageLoader.cs" />
-    <Compile Include="ImageSaver.cs" />
+    <Compile Include="Image Manipulation\IImageLoader.cs" />
+    <Compile Include="Image Manipulation\ImageSaver.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Filters\NightFilter.cs" />
     <Compile Include="Program.cs" />

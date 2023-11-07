@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetAMTC.Edges_Detections;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -16,6 +17,7 @@ namespace ProjetAMTC
         double[,] selectedYMatrix = null;
         private IImageLoader fileLoader = new ImageLoader();
         private IImageSaver imageSaver = new ImageSaver();
+        private IEdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
 
         public MainForm()
         {
@@ -93,6 +95,12 @@ namespace ProjetAMTC
 
         private void ApplyEdgeDetection(Bitmap source, double[,] xMatrix, double[,] yMatrix, bool preview)
         {
+            Bitmap result = edgeDetectionManager.ApplyEdgeDetection(source, xMatrix, yMatrix, preview);
+            pictureModified.Image = result;
+        }
+
+        /*private void ApplyEdgeDetection(Bitmap source, double[,] xMatrix, double[,] yMatrix, bool preview)
+        {
             if (source == null)
             {
                 return;
@@ -154,7 +162,7 @@ namespace ProjetAMTC
                 resultBitmap = result;
                 pictureModified.Image = resultBitmap;
             }
-        }
+        } */
 
 
 

@@ -43,7 +43,7 @@ namespace TP1AMTC
 
             return bitmapResult;
         }
-
+        /*
         private static Bitmap ConvolutionFilter(Bitmap sourceBitmap,
                                             double[,] filterMatrix,
                                                  double factor = 1,
@@ -329,6 +329,6 @@ namespace TP1AMTC
                                                         1.0, 0, grayscale);
 
             return resultBitmap;
-        }
+        }*/
     }
 }
