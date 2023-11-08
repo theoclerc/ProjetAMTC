@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjetAMTC
 {
-    internal interface IImageSaver
+    public interface IImageSaver
     {
         void SaveImage(Bitmap image, string filePath, ImageFormat format);
     }

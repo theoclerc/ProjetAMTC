@@ -9,9 +9,13 @@ namespace ProjetAMTC.Edges_Detections
 {
     public class EdgeDetectionManager : IEdgeDetectionManager
     {
+        const double RedWeight = 0.3;
+        const double GreenWeight = 0.59;
+        const double BlueWieght = 0.11;
 
         public Bitmap ApplyEdgeDetection(Bitmap source, double[,] xMatrix, double[,] yMatrix, bool preview)
         {
+
             // Check if the input source image is null
             if (source == null)
             {
@@ -64,7 +68,7 @@ namespace ProjetAMTC.Edges_Detections
                     // Get the color of the neighbor pixel
                     Color neighborColor = source.GetPixel(x + i, y + j);
                     // Calculate the grayscale value of the neighbor pixel
-                    double grayValue = neighborColor.R * 0.3 + neighborColor.G * 0.59 + neighborColor.B * 0.11;
+                    double grayValue = neighborColor.R * RedWeight + neighborColor.G * GreenWeight + neighborColor.B * BlueWieght;
                     // Calculate the x-gradient component using the xMatrix
                     xGradient += grayValue * xMatrix[i + 1, j + 1];
                 }
@@ -83,7 +87,7 @@ namespace ProjetAMTC.Edges_Detections
                     // Get the color of the neighbor pixel
                     Color neighborColor = source.GetPixel(x + i, y + j);
                     // Calculate the grayscale value of the neighbor pixel
-                    double grayValue = neighborColor.R * 0.3 + neighborColor.G * 0.59 + neighborColor.B * 0.11;
+                    double grayValue = neighborColor.R * RedWeight + neighborColor.G * GreenWeight + neighborColor.B * BlueWieght;
                     // Calculate the y-gradient component using the yMatrix
                     yGradient += grayValue * yMatrix[i + 1, j + 1];
                 }
