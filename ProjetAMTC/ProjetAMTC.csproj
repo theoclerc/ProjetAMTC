@@ -59,10 +59,10 @@
     <Compile Include="Edges Detections\EdgeDetectionManager.cs" />
     <Compile Include="Edges Detections\IEdgeDetectionManager.cs" />
     <Compile Include="Edges Detections\ExtBitmap.cs" />
-    <Compile Include="Filters\IImageFilter.cs" />
+    <Compile Include="Filters\IImageFilterManager.cs" />
+    <Compile Include="Filters\ImageFilterManager.cs" />
     <Compile Include="Image Manipulation\IImageSaver.cs" />
     <Compile Include="Image Manipulation\ImageLoader.cs" />
-    <Compile Include="Filters\BlackWhiteFilter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,10 +72,8 @@
     <Compile Include="Image Manipulation\IImageLoader.cs" />
     <Compile Include="Image Manipulation\ImageSaver.cs" />
     <Compile Include="Edges Detections\Matrix.cs" />
-    <Compile Include="Filters\NightFilter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Filters\RainbowFilter.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

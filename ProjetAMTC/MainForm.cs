@@ -20,9 +20,7 @@ namespace ProjetAMTC
         private IImageLoader fileLoader = new ImageLoader();
         private IImageSaver imageSaver = new ImageSaver();
         private IEdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
-        private IImageFilter nightFilter = new NightFilter(1,1,1,25);
-        private IImageFilter blackWhiteFilter = new BlackWhiteFilter();
-        private IImageFilter rainbowFilter = new RainbowFilter();
+        private IImageFilterManager imageFilterManager = new ImageFilterManager();
 
 
         public MainForm()
@@ -132,7 +130,7 @@ namespace ProjetAMTC
             {
                 if (resultBitmap != null)
                 {
-                    resultBitmap = rainbowFilter.ApplyFilter(resultBitmap);
+                    resultBitmap = imageFilterManager.ApplyRainbowFilter(resultBitmap);
                     filtersApplied = true;
                 }
             }
@@ -142,7 +140,7 @@ namespace ProjetAMTC
             {
                 if (resultBitmap != null)
                 {
-                    resultBitmap = nightFilter.ApplyFilter(resultBitmap);
+                    resultBitmap = imageFilterManager.ApplyNightFilter(resultBitmap,1,1,1,25);
                     filtersApplied = true;
                 }
             }
@@ -152,7 +150,7 @@ namespace ProjetAMTC
             {
                 if (resultBitmap != null)
                 {
-                    resultBitmap = blackWhiteFilter.ApplyFilter(resultBitmap);
+                    resultBitmap = imageFilterManager.ApplyBlackWhiteFilter(resultBitmap);
                     filtersApplied = true;
                 }
             }
