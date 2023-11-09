@@ -85,6 +85,26 @@ namespace ProjetAMTC_Test
         }
 
         [TestMethod]
+        public void CalculateYGradient_SomeTestScenario_ExpectedResult2()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+            ImageFilterManager filterManager = new ImageFilterManager();
+            Bitmap sourceImage = new Bitmap("TestFiles/imageTest.jpg");
+            double[,] yMatrix = Matrix.Kirsch3x3Horizontal;
+
+            var expectedXGradient = -9.000000000000028;
+
+            filterManager.ApplyBlackWhiteFilter(sourceImage);
+
+            // Act
+            double result = edgeDetectionManager.CalculateYGradient(sourceImage, yMatrix, 1, 1);
+
+            // Assert
+            Assert.AreEqual(expectedXGradient, result);
+        }
+
+        [TestMethod]
         public void CalculateGradientMagnitude_SomeTestScenario_ExpectedResult()
         {
             // Arrange

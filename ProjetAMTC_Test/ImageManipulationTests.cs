@@ -99,5 +99,18 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<UnauthorizedAccessException>(() => imageSaver.SaveImage(imageToSave, filePath, format));
         }
 
+        [TestMethod]
+        public void SaveImage_PermissionDenied_ThrowsUnauthorizedAccessException()
+        {
+            // Arrange
+            IImageSaver imageSaver = new ImageSaver();
+            Bitmap image = new Bitmap(100, 100);
+            string restrictedDirectoryPath = "C:\\Windows\\System32\\output.jpg"; // Assuming this directory requires elevated permissions
+            ImageFormat format = ImageFormat.Jpeg;
+
+            // Act & Assert
+            Assert.ThrowsException<UnauthorizedAccessException>(() => imageSaver.SaveImage(image, restrictedDirectoryPath, format));
+        }
+
     }
 }
