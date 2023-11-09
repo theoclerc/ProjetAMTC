@@ -29,13 +29,29 @@ namespace ProjetAMTC_Test
         }
 
         [TestMethod]
-        public void ApplyEdgeDetection_NoMatrix_ReturnsOriginalImage()
+        public void ApplyEdgeDetection_NoMatrixX_ReturnsOriginalImage()
         {
             // Arrange
             EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
             Bitmap source = new Bitmap(100,100);
 
             double[,] xMatrix = null;
+            double[,] yMatrix = Matrix.Kirsch3x3Horizontal;
+            // Act
+            Bitmap result = edgeDetectionManager.ApplyEdgeDetection(source, xMatrix, yMatrix, false);
+
+            // Assert
+            Assert.AreEqual(source, result);
+        }
+
+        [TestMethod]
+        public void ApplyEdgeDetection_NoMatrixY_ReturnsOriginalImage()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+            Bitmap source = new Bitmap(100, 100);
+
+            double[,] xMatrix = Matrix.Laplacian3x3;
             double[,] yMatrix = null;
             // Act
             Bitmap result = edgeDetectionManager.ApplyEdgeDetection(source, xMatrix, yMatrix, false);
@@ -155,6 +171,8 @@ namespace ProjetAMTC_Test
             // Assert
             Assert.AreEqual(255, result);
         }
+
+        
     }
 }
 
