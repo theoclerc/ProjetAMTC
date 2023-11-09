@@ -9,6 +9,57 @@ namespace ProjetAMTC_Test
     [TestClass]
     public class FiltersTests
     {
+        [TestMethod]
+        public void ApplyNightFilter_CallsApplyNightFilterMethodWithExpectedArguments()
+        {
+            // Arrange
+            IImageFilterManager filterManager = Substitute.For<IImageFilterManager>();
+            string imagePath = "TestFiles/imageTest.jpg";
+
+            // Use NSubstitute to create a substitute for Bitmap
+            Bitmap baseImage = new Bitmap(imagePath);
+
+            // Act
+            filterManager.ApplyNightFilter(baseImage, 2, 3, 4, 5);
+
+            // Assert
+            filterManager.Received().ApplyNightFilter(baseImage, 2, 3, 4, 5);
+        }
+
+        [TestMethod]
+        public void ApplyRainbowFilter_CallsApplyNightFilterMethodWithExpectedArguments()
+        {
+            // Arrange
+            IImageFilterManager filterManager = Substitute.For<IImageFilterManager>();
+            string imagePath = "TestFiles/imageTest.jpg";
+
+            // Use NSubstitute to create a substitute for Bitmap
+            Bitmap baseImage = new Bitmap(imagePath);
+
+            // Act
+            filterManager.ApplyRainbowFilter(baseImage);
+
+            // Assert
+            filterManager.Received().ApplyRainbowFilter(baseImage);
+        }
+
+        [TestMethod]
+        public void ApplyBlackWhiteFilter_CallsApplyNightFilterMethodWithExpectedArguments()
+        {
+            // Arrange
+            IImageFilterManager filterManager = Substitute.For<IImageFilterManager>();
+            string imagePath = "TestFiles/imageTest.jpg";
+
+            // Use NSubstitute to create a substitute for Bitmap
+            Bitmap baseImage = new Bitmap(imagePath);
+
+            // Act
+            filterManager.ApplyBlackWhiteFilter(baseImage);
+
+            // Assert
+            filterManager.Received().ApplyBlackWhiteFilter(baseImage);
+        }
+
         // Test to ensure that applying the Night filter results in a different image than the original
         [TestMethod]
         public void ApplyNightFilter_ImageDifferent()
@@ -25,6 +76,7 @@ namespace ProjetAMTC_Test
             Assert.IsNotNull(filteredImage);
             Assert.AreNotEqual(baseImage, filteredImage);
         }
+
 
         // Test to ensure that applying the Rainbow filter results in a different image than the original
         [TestMethod]
@@ -64,7 +116,7 @@ namespace ProjetAMTC_Test
 
         // Test to ensure that applying the Night filter with different parameters twice produces two different results
         [TestMethod]
-        public void ApplyNightFilter_DifferentParameters()
+        public void ApplyNightFilter_WithDifferentParameters()
         {
             // Arrange
             ImageFilterManager filterManager = new ImageFilterManager();
