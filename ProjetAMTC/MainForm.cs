@@ -39,25 +39,39 @@ namespace ProjetAMTC
             ofd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
             ofd.Filter += "|Bitmap Images(*.bmp)|*.bmp";
 
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                // Use the file loader to load the image
-                originalBitmap = fileLoader.LoadImageFromFile(ofd.FileName);
-
-                if (originalBitmap != null)
+                // Check if the selected file exists
+                if (File.Exists(ofd.FileName))
                 {
-                    // Copy the original image to a square canvas and display it
-                    resultBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
-                    picPreview.Image = resultBitmap;
-                    pictureModified.Image = resultBitmap;
-                    EnableFiltersButtons(true);
+                    // Use the file loader to load the image
+                    originalBitmap = fileLoader.LoadImageFromFile(ofd.FileName);
+
+                    if (originalBitmap != null)
+                    {
+                        // Copy the original image to a square canvas and display it
+                        resultBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
+                        picPreview.Image = resultBitmap;
+                        pictureModified.Image = resultBitmap;
+                        EnableFiltersButtons(true);
+                    }
+                    else
+                    {
+                        // Display a message box for unsupported image format
+                        MessageBox.Show("Unsupported image format. Please select a valid image file (png, jpg, bmp).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // Display a message box for non-existent file
+                    MessageBox.Show("The selected file does not exist. Please choose a valid file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
-
             if (resultBitmap != null)
             {
                 // Open a save file dialog to specify the file name and format
@@ -68,17 +82,32 @@ namespace ProjetAMTC
 
                 if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
+                    // Check if the selected directory exists
+                    string directory = Path.GetDirectoryName(sfd.FileName);
+                    if (!Directory.Exists(directory))
+                    {
+                        // Display a message box for non-existent directory
+                        MessageBox.Show("The specified directory does not exist. Please choose a valid directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop further processing if directory doesn't exist
+                    }
+
                     // Determine the image format based on the file extension
-                    string fileExtension = Path.GetExtension(sfd.FileName).ToUpper();
+                    string fileExtension = Path.GetExtension(sfd.FileName).ToLower();
                     ImageFormat imgFormat = ImageFormat.Png;
 
-                    if (fileExtension == "BMP")
+                    if (fileExtension == ".bmp")
                     {
                         imgFormat = ImageFormat.Bmp;
                     }
-                    else if (fileExtension == "JPG")
+                    else if (fileExtension == ".jpg")
                     {
                         imgFormat = ImageFormat.Jpeg;
+                    }
+                    else if (fileExtension != ".png")
+                    {
+                        // Display a message box for unsupported image format
+                        MessageBox.Show("Unsupported image format. Please select a valid image format (png, jpg, bmp).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop further processing if format is not supported
                     }
 
                     // Save the result image with the specified format
@@ -96,6 +125,7 @@ namespace ProjetAMTC
                 }
             }
         }
+
 
         private void ApplyEdgeDetection(Bitmap source, double[,] xMatrix, double[,] yMatrix, bool preview)
         {
