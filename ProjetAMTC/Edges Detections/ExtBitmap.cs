@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjetAMTC;
 
-namespace TP1AMTC
+namespace ProjetAMTC
 {
     public static class ExtBitmap
     {

@@ -99,5 +99,58 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<UnauthorizedAccessException>(() => imageSaver.SaveImage(imageToSave, filePath, format));
         }
 
+        [TestMethod]
+        public void CopyToSquareCanvas_WiderImage_ShouldReturnProportionalImage()
+        {
+            // Arrange
+            Bitmap wideImage = new Bitmap(150, 100);
+
+            // Act
+            Bitmap result = wideImage.CopyToSquareCanvas(50);
+
+            // Assert
+            Assert.AreEqual(50, result.Width);
+            Assert.AreEqual(33, result.Height); // (100 / 150) * 50 = 33.33, rounded down to 33
+        }
+
+        [TestMethod]
+        public void CopyToSquareCanvas_TallerImage_ShouldReturnProportionalImage()
+        {
+            // Arrange
+            Bitmap tallImage = new Bitmap(100, 150);
+
+            // Act
+            Bitmap result = tallImage.CopyToSquareCanvas(50);
+
+            // Assert
+            Assert.AreEqual(33, result.Width); // (100 / 150) * 50 = 33.33, rounded down to 33
+            Assert.AreEqual(50, result.Height);
+        }
+
+        [TestMethod]
+        public void CopyToSquareCanvas_ZeroWidth_ShouldThrowArgumentException()
+        {
+            // Arrange
+            Bitmap image = new Bitmap(100, 100);
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentException>(() => image.CopyToSquareCanvas(0));
+        }
+
+
+        [TestMethod]
+        public void CopyToSquareCanvas_NegativeWidth_ShouldThrowArgumentException()
+        {
+            // Arrange
+            Bitmap image = new Bitmap(100, 100);
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentException>(() => image.CopyToSquareCanvas(-50));
+        }
+
+        // Add more tests as needed based on the scenarios mentioned earlier.
     }
+
+
 }
+
