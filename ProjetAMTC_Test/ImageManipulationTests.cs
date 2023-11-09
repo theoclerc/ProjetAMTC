@@ -148,12 +148,6 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<ArgumentException>(() => image.CopyToSquareCanvas(-50));
         }
 
-        // Add more tests as needed based on the scenarios mentioned earlier.
-    }
-
-
-}
-
         [TestMethod]
         public void SaveImage_PermissionDenied_ThrowsUnauthorizedAccessException()
         {
@@ -168,4 +162,10 @@ namespace ProjetAMTC_Test
         }
 
     }
+
+    
+
+
 }
+
+       
