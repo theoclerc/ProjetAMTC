@@ -9,6 +9,7 @@ namespace ProjetAMTC_Test
     [TestClass]
     public class FiltersTests
     {
+        // Test to ensure that the ApplyNightFilter method is called with the expected arguments
         [TestMethod]
         public void ApplyNightFilter_CallsApplyNightFilterMethodWithExpectedArguments()
         {
@@ -26,6 +27,7 @@ namespace ProjetAMTC_Test
             filterManager.Received().ApplyNightFilter(baseImage, 2, 3, 4, 5);
         }
 
+        // Test to ensure that the ApplyRainbowFilter method is called with the expected arguments
         [TestMethod]
         public void ApplyRainbowFilter_CallsApplyNightFilterMethodWithExpectedArguments()
         {
@@ -43,6 +45,7 @@ namespace ProjetAMTC_Test
             filterManager.Received().ApplyRainbowFilter(baseImage);
         }
 
+        // Test to ensure that the ApplyBlackWhiteFilter method is called with the expected arguments
         [TestMethod]
         public void ApplyBlackWhiteFilter_CallsApplyNightFilterMethodWithExpectedArguments()
         {
@@ -62,7 +65,7 @@ namespace ProjetAMTC_Test
 
         // Test to ensure that applying the Night filter results in a different image than the original
         [TestMethod]
-        public void ApplyNightFilter_ImageDifferent()
+        public void ApplyNightFilter_DifferentImagesAfterFiltering()
         {
             // Arrange
             ImageFilterManager filterManager = new ImageFilterManager();
@@ -80,7 +83,7 @@ namespace ProjetAMTC_Test
 
         // Test to ensure that applying the Rainbow filter results in a different image than the original
         [TestMethod]
-        public void ApplyRainbowFilter_ImageDifferent()
+        public void ApplyRainbowFilter_DifferentImagesAfterFiltering()
         {
             // Arrange
             ImageFilterManager filterManager = new ImageFilterManager();
@@ -97,7 +100,7 @@ namespace ProjetAMTC_Test
 
         // Test to ensure that applying the Black and White filter results in a different image than the original
         [TestMethod]
-        public void ApplyBlackWhiteFilter_ImageDifferent()
+        public void ApplyBlackWhiteFilter_DifferentImagesAfterFiltering()
         {
             // Arrange
             ImageFilterManager filterManager = new ImageFilterManager();
@@ -116,7 +119,7 @@ namespace ProjetAMTC_Test
 
         // Test to ensure that applying the Night filter with different parameters twice produces two different results
         [TestMethod]
-        public void ApplyNightFilter_WithDifferentParameters()
+        public void ApplyNightFilter_DifferentResultsWithDifferentParameters()
         {
             // Arrange
             ImageFilterManager filterManager = new ImageFilterManager();
@@ -136,7 +139,7 @@ namespace ProjetAMTC_Test
 
         // Test to ensure that applying multiple filters in sequence produces different results
         [TestMethod]
-        public void ApplySeveralFilters()
+        public void ApplySeveralFilters_DifferentResultsAfterMultipleFilters()
         {
             // Arrange
             ImageFilterManager filterManager = new ImageFilterManager();
