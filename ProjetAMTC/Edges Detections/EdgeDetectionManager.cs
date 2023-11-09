@@ -27,10 +27,11 @@ namespace ProjetAMTC.Edges_Detections
             // Create a new Bitmap to store the result
             Bitmap result = new Bitmap(width, height);
 
-            if (xMatrix == null && yMatrix == null)
+            if (xMatrix == null || yMatrix == null)
             {
                 // No edge detection selected, return the original image
-                return preview ? new Bitmap(source) : result;
+                result = source;
+                return result;
             }
 
             // Loop through each pixel in the image

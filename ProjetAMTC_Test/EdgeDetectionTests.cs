@@ -7,48 +7,133 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjetAMTC;
+using ProjetAMTC.Filters;
 
 namespace ProjetAMTC_Test
 {
     [TestClass]
     public class EdgeDetectionTests
     {
+        // Test who must return a null value if a source value is given into edge detection method
         [TestMethod]
-        public void CalculateXGradient_ReturnsExpectedValue()
+        public void ApplyEdgeDetection_NullSource_ReturnsNull()
         {
             // Arrange
-            IEdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
-            double[,] xMatrix = Matrix.Laplacian3x3; // Use the Laplacian 3x3 matrix
-            int x = 1; // Replace with your desired x coordinate
-            int y = 1; // Replace with your desired y coordinate
-
-            // Create a substitute for the Bitmap
-            var substituteBitmap = Substitute.For<Bitmap>();
-
-            // Define the expected behavior of the substitute Bitmap
-            // You need to specify the behavior for GetPixel and properties like Width and Height
-            substituteBitmap.Width.Returns(3); // Replace with your desired width
-            substituteBitmap.Height.Returns(3); // Replace with your desired height
-            substituteBitmap.GetPixel(Arg.Any<int>(), Arg.Any<int>()).Returns(
-                Color.FromArgb(255, 0, 0), // Replace with desired color values
-                Color.FromArgb(0, 255, 0), // Replace with desired color values
-                Color.FromArgb(0, 0, 255), // Replace with desired color values
-                Color.FromArgb(255, 255, 0), // Replace with desired color values
-                Color.FromArgb(0, 255, 255), // Replace with desired color values
-                Color.FromArgb(255, 0, 255), // Replace with desired color values
-                Color.FromArgb(128, 128, 128), // Replace with desired color values
-                Color.FromArgb(64, 64, 64), // Replace with desired color values
-                Color.FromArgb(192, 192, 192) // Replace with desired color values
-            );
-
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
 
             // Act
-            double result = edgeDetectionManager.CalculateXGradient(substituteBitmap, xMatrix, x, y);
+            Bitmap result = edgeDetectionManager.ApplyEdgeDetection(null, null, null, false);
 
             // Assert
-            // Replace the expectedValue with the value you expect based on the given behavior
-            double expectedValue = 42.0; // Replace with your expected result
-            Assert.AreEqual(expectedValue, result);
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void ApplyEdgeDetection_NoMatrix_ReturnsOriginalImage()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+            Bitmap source = new Bitmap(100,100);
+
+            double[,] xMatrix = null;
+            double[,] yMatrix = null;
+            // Act
+            Bitmap result = edgeDetectionManager.ApplyEdgeDetection(source, xMatrix, yMatrix, false);
+
+            // Assert
+            Assert.AreEqual(source, result);
+        }
+
+        [TestMethod]
+        public void CalculateXGradient_SomeTestScenario_ExpectedResult()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+            ImageFilterManager filterManager = new ImageFilterManager();
+            Bitmap sourceImage = new Bitmap("TestFiles/imageTest.jpg");
+            double[,] xMatrix = Matrix.Laplacian3x3;
+
+            var expectedXGradient = 5.000000000000014;
+
+            filterManager.ApplyRainbowFilter(sourceImage);
+
+            // Act
+            double result = edgeDetectionManager.CalculateXGradient(sourceImage, xMatrix, 1, 1);
+
+            // Assert (replace with your actual expected result)
+            Assert.AreEqual(expectedXGradient, result);
+        }
+
+        [TestMethod]
+        public void CalculateYGradient_SomeTestScenario_ExpectedResult()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+            ImageFilterManager filterManager = new ImageFilterManager();
+            Bitmap sourceImage = new Bitmap("TestFiles/imageTest.jpg");
+            double[,] yMatrix = Matrix.Kirsch3x3Vertical;
+
+            var expectedXGradient = -17;
+
+            filterManager.ApplyBlackWhiteFilter(sourceImage);
+
+            // Act
+            double result = edgeDetectionManager.CalculateYGradient(sourceImage, yMatrix, 1, 1);
+
+            // Assert
+            Assert.AreEqual(expectedXGradient, result);
+        }
+
+        [TestMethod]
+        public void CalculateGradientMagnitude_SomeTestScenario_ExpectedResult()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+
+            // Act
+            double result = edgeDetectionManager.CalculateGradientMagnitude(3.0, 4.0);
+
+            // Assert
+            Assert.AreEqual(5, result, 0.001); // Using a delta for double comparison
+        }
+
+        [TestMethod]
+        public void CalculateNewPixelValue_GradientMagnitudeInRange_ReturnsMagnitude()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+
+            // Act
+            int result = edgeDetectionManager.CalculateNewPixelValue(127.0);
+
+            // Assert
+            Assert.AreEqual(127, result);
+        }
+
+        [TestMethod]
+        public void CalculateNewPixelValue_GradientMagnitudeBelowRange_ReturnsMinimumValue()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+
+            // Act
+            int result = edgeDetectionManager.CalculateNewPixelValue(-10.0);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void CalculateNewPixelValue_GradientMagnitudeAboveRange_ReturnsMaximumValue()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+
+            // Act
+            int result = edgeDetectionManager.CalculateNewPixelValue(300.0);
+
+            // Assert
+            Assert.AreEqual(255, result);
         }
     }
 }
