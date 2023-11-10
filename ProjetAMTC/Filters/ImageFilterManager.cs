@@ -7,8 +7,20 @@ using System.Threading.Tasks;
 
 namespace ProjetAMTC.Filters
 {
+    /// <summary>
+    /// Implementation of the <see cref="IImageFilterMaanger"/> interface for applying filters on Bitmap images.
+    /// </summary>
     public class ImageFilterManager : IImageFilterManager
     {
+        /// <summary>
+        /// Applies a night filter to the input image with specified alpha, red, blue, and green parameters.
+        /// </summary>
+        /// <param name="bmp">The input image.</param>
+        /// <param name="alpha">The alpha parameter for the color filter.</param>
+        /// <param name="red">The red parameter for the color filter.</param>
+        /// <param name="blue">The blue parameter for the color filter.</param>
+        /// <param name="green">The green parameter for the color filter.</param>
+        /// <returns>The image with the applied night filter.</returns>
         public Bitmap ApplyNightFilter(Bitmap bmp, int alpha, int red, int blue, int green)
         {
             // Create a new temporary image with the same dimensions as the input image
@@ -39,6 +51,11 @@ namespace ProjetAMTC.Filters
             return temp;
         }
 
+        /// <summary>
+        /// Applies a rainbow filter to the input image.
+        /// </summary>
+        /// <param name="bmp">The input image.</param>
+        /// <returns>The image with the applied rainbow filter.</returns>
         public Bitmap ApplyRainbowFilter(Bitmap bmp)
         {
             // Create a new temporary image with the same dimensions as the input image
@@ -87,6 +104,11 @@ namespace ProjetAMTC.Filters
             return temp;
         }
 
+        /// <summary>
+        /// Applies a black and white filter to the input image.
+        /// </summary>
+        /// <param name="bmp">The input image.</param>
+        /// <returns>The image with the applied black and white filter.</returns>
         public Bitmap ApplyBlackWhiteFilter(Bitmap bmp)
         {
             int rgb;

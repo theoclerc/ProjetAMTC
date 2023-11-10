@@ -4,8 +4,17 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
+/// <summary>
+/// Class responsible for saving images to a file.
+/// </summary>
 public class ImageSaver : IImageSaver
 {
+    /// <summary>
+    /// Saves the specified image to the specified file path with the specified image format.
+    /// </summary>
+    /// <param name="image">The image to be saved.</param>
+    /// <param name="filePath">The path where the image will be saved.</param>
+    /// <param name="format">The format in which the image will be saved.</param>
     public void SaveImage(Bitmap image, string filePath, ImageFormat format)
     {
         string fileExtension = Path.GetExtension(filePath).ToLower();
@@ -38,8 +47,6 @@ public class ImageSaver : IImageSaver
             throw new ArgumentException("Unsupported image format. Supported formats are PNG, JPEG, and BMP.");
         }
     }
-
-
 }
 
 

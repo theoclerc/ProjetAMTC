@@ -11,9 +11,17 @@ using ProjetAMTC;
 
 namespace ProjetAMTC
 {
+    /// <summary>
+    /// A static class providing extension methods for Bitmap manipulation.
+    /// </summary>
     public static class ExtBitmap
     {
-
+        /// <summary>
+        /// Copies the source Bitmap to a square canvas of the specified width/length.
+        /// </summary>
+        /// <param name="sourceBitmap">The source Bitmap to be copied.</param>
+        /// <param name="canvasWidthLenght">The width/length of the square canvas.</param>
+        /// <returns>A new Bitmap copied to a square canvas.</returns>
         public static Bitmap CopyToSquareCanvas(this Bitmap sourceBitmap, int canvasWidthLenght)
         {
             float ratio = 1.0f;
