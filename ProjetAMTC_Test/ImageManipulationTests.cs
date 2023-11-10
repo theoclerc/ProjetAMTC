@@ -10,18 +10,31 @@ namespace ProjetAMTC_Test
     public class ImageManipulationTests
     {
 
-        public void LoadImage_ValidFilePath_LoadsImageSuccessfully()
+        [TestMethod]
+        public void LoadImageFromFile_ValidFile_ShouldLoadImage()
         {
             // Arrange
-            var imageLoader = new ImageLoader();
-            string validFilePath = "path/to/valid/image.jpg";
+            var imageLoader = new ProjetAMTC.ImageLoader();
+            var relativePath = Path.Combine("TestFiles", "imageTest.jpg");
+            var absolutePath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
 
             // Act
-            Bitmap loadedImage = imageLoader.LoadImageFromFile(validFilePath);
+            var loadedImage = imageLoader.LoadImageFromFile(absolutePath);
 
             // Assert
             Assert.IsNotNull(loadedImage);
-            Assert.IsInstanceOfType(loadedImage, typeof(Bitmap));
+            // Ajoutez d'autres assertions selon vos besoins pour vérifier que l'image est chargée correctement.
+        }
+
+        [TestMethod]
+        public void LoadImageFromFile_FileNotFound_ShouldThrowFileNotFoundException()
+        {
+            // Arrange
+            var imageLoader = new ProjetAMTC.ImageLoader();
+            var nonExistentPath = "nonExistentPath.jpg"; // Non existent path
+
+            // Act & Assert
+            Assert.ThrowsException<FileNotFoundException>(() => imageLoader.LoadImageFromFile(nonExistentPath));
         }
 
         [TestMethod]
