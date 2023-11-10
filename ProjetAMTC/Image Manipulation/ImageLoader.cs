@@ -43,12 +43,11 @@ namespace ProjetAMTC
             }
             catch (Exception ex)
             {
-              
+
                 Console.WriteLine("Error loading the image: " + ex.Message);
                 throw; // Rethrow the exception to maintain the original behavior
             }
             return loadedImage;
         }
-
-        }
+    }
 }

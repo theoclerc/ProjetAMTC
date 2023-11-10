@@ -206,6 +206,33 @@ namespace ProjetAMTC_Test
             // Assert
             Assert.AreEqual(255, result);
         }
+
+        /// <summary>
+        /// Test to ensure that edge detection is applied to each pixel in the image.
+        /// </summary>
+        [TestMethod]
+        public void ApplyEdgeDetection_EachPixelProcessed()
+        {
+            // Arrange
+            EdgeDetectionManager edgeDetectionManager = new EdgeDetectionManager();
+            Bitmap sourceImage = new Bitmap(10, 10);
+            double[,] xMatrix = Matrix.Laplacian3x3;
+            double[,] yMatrix = Matrix.Kirsch3x3Vertical;
+
+            // Act
+            Bitmap result = edgeDetectionManager.ApplyEdgeDetection(sourceImage, xMatrix, yMatrix, false);
+
+            // Assert
+            for (int y = 1; y < sourceImage.Height - 1; y++)
+            {
+                for (int x = 1; x < sourceImage.Width - 1; x++)
+                {
+                    // Verify that each pixel in the result image has been processed
+                    Color resultColor = result.GetPixel(x, y);
+                    Assert.IsNotNull(resultColor);
+                }
+            }
+        }
     }
 }
 

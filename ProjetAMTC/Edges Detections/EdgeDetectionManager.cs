@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -143,5 +143,6 @@ namespace ProjetAMTC.Edges_Detections
             // Ensure the value is within the 0-255 range
             return (int)Math.Max(0, Math.Min(255, gradientMagnitude));
         }
+
     }
 }
