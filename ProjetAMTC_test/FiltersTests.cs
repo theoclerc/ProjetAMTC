@@ -21,8 +21,6 @@ namespace ProjetAMTC_Test
             // Arrange
             IImageFilterManager filterManager = Substitute.For<IImageFilterManager>();
             string imagePath = "TestFiles/imageTest.jpg";
-
-            // Use NSubstitute to create a substitute for Bitmap
             Bitmap baseImage = new Bitmap(imagePath);
 
             // Act
@@ -41,8 +39,6 @@ namespace ProjetAMTC_Test
             // Arrange
             IImageFilterManager filterManager = Substitute.For<IImageFilterManager>();
             string imagePath = "TestFiles/imageTest.jpg";
-
-            // Use NSubstitute to create a substitute for Bitmap
             Bitmap baseImage = new Bitmap(imagePath);
 
             // Act
@@ -61,8 +57,6 @@ namespace ProjetAMTC_Test
             // Arrange
             IImageFilterManager filterManager = Substitute.For<IImageFilterManager>();
             string imagePath = "TestFiles/imageTest.jpg";
-
-            // Use NSubstitute to create a substitute for Bitmap
             Bitmap baseImage = new Bitmap(imagePath);
 
             // Act
