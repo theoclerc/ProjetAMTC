@@ -15,7 +15,6 @@ namespace ProjetAMTC_Test
         /// <summary>
         /// Test to ensure that loading an image from a valid path is successful.
         /// </summary>
-
         [TestMethod]
         public void LoadImageFromFile_ValidFile_ShouldLoadImage()
         {
@@ -32,6 +31,9 @@ namespace ProjetAMTC_Test
             // Ajoutez d'autres assertions selon vos besoins pour vérifier que l'image est chargée correctement.
         }
 
+        /// <summary>
+        /// Test to verify that an exception is thrown when attempting to load an image from a non-existent file path.
+        /// </summary>
         [TestMethod]
         public void LoadImageFromFile_FileNotFound_ShouldThrowFileNotFoundException()
         {
@@ -43,6 +45,9 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<FileNotFoundException>(() => imageLoader.LoadImageFromFile(nonExistentPath));
         }
 
+        /// <summary>
+        /// Test to ensure that attempting to load an image with an invalid file path results in a DirectoryNotFoundException.
+        /// </summary>
         [TestMethod]
         public void LoadImage_InvalidFilePath_ThrowsDirectoryNotFoundException()
         {
@@ -54,6 +59,9 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<DirectoryNotFoundException>(() => imageLoader.LoadImageFromFile(invalidFilePath));
         }
 
+        /// <summary>
+        /// Test to ensure that attempting to load an image with a null file path results in an ArgumentNullException.
+        /// </summary>
         [TestMethod]
         public void LoadImage_NullFilePath_ThrowsArgumentNullException()
         {
@@ -64,7 +72,10 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<ArgumentNullException>(() => imageLoader.LoadImageFromFile(null));
         }
 
-    [TestMethod]
+        /// <summary>
+        /// Test to verify that loading an image from a valid file path is successful.
+        /// </summary>
+        [TestMethod]
         public void LoadImageFromFile_ValidPath_Success()
         {
             // Arrange
