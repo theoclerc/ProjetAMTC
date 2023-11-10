@@ -242,7 +242,7 @@ namespace ProjetAMTC_Test
 
         /// <summary>
         /// BY GPT
-        /// Test to ensure that saving an image to a directory with restricted access throws an UnauthorizedAccessException.
+        /// Test to ensure that saving an image to a directory with restricted access throws an UnauthorizedAccessException with a substitute.
         /// </summary>
         [TestMethod]
         public void SaveImage_PermissionDenied_ThrowsUnauthorizedAccessException()
@@ -260,6 +260,22 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<UnauthorizedAccessException>(() => imageSaver.SaveImage(image, restrictedDirectoryPath, format));
         }
 
+        /// <summary>
+        /// BY GPT
+        /// Test to ensure that saving an image to a directory with restricted access throws an UnauthorizedAccessException.
+        /// </summary>
+        [TestMethod]
+        public void SaveImage_PermissionDenied_ThrowsUnauthorizedAccessExceptionWithoutSubstitute()
+        {
+            // Arrange
+            IImageSaver imageSaver = new ImageSaver();
+            Bitmap image = new Bitmap(100, 100);
+            string restrictedDirectoryPath = "C:\\Windows\\System32\\output.jpg"; // Assuming this directory requires elevated permissions
+            ImageFormat format = ImageFormat.Jpeg;
+
+            // Act & Assert
+            Assert.ThrowsException<UnauthorizedAccessException>(() => imageSaver.SaveImage(image, restrictedDirectoryPath, format));
+        }
     }
     }
 
