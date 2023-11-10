@@ -51,8 +51,4 @@ namespace ProjetAMTC
         }
 
         }
-
-
-
-    }
 }
