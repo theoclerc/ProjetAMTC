@@ -46,7 +46,6 @@ namespace ProjetAMTC.Filters
                     temp.SetPixel(i, x, newColor);
                 }
             }
-
             // Return the filtered image
             return temp;
         }
@@ -100,7 +99,7 @@ namespace ProjetAMTC.Filters
                     }
                 }
             }
-
+            // Return the rainbow filtered image
             return temp;
         }
 
@@ -126,7 +125,6 @@ namespace ProjetAMTC.Filters
                     bmp.SetPixel(x, y, Color.FromArgb(rgb, rgb, rgb));
                 }
             }
-
             // Return the black and white filtered image
             return bmp;
         }

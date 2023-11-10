@@ -11,10 +11,16 @@ using ProjetAMTC.Filters;
 
 namespace ProjetAMTC_Test
 {
+    /// <summary>
+    /// Test class for the EdgeDetectionManager class. ChatGPT was used to help with certain tests.
+    /// </summary>
     [TestClass]
     public class EdgeDetectionTests
     {
-        // Test who must return a null value if a source value is given into edge detection method
+        /// <summary>
+        /// Test method for the ApplyEdgeDetection method when a null source is provided.
+        /// It should return null as the result.
+        /// </summary>
         [TestMethod]
         public void ApplyEdgeDetection_NullSource_ReturnsNull()
         {
@@ -28,6 +34,10 @@ namespace ProjetAMTC_Test
             Assert.IsNull(result);
         }
 
+        /// <summary>
+        /// Test method for the ApplyEdgeDetection method when no X matrix is provided.
+        /// It should return the original image.
+        /// </summary>
         [TestMethod]
         public void ApplyEdgeDetection_NoMatrixX_ReturnsOriginalImage()
         {
@@ -44,6 +54,10 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(source, result);
         }
 
+        /// <summary>
+        /// Test method for the ApplyEdgeDetection method when no Y matrix is provided.
+        /// It should return the original image.
+        /// </summary>
         [TestMethod]
         public void ApplyEdgeDetection_NoMatrixY_ReturnsOriginalImage()
         {
@@ -60,6 +74,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(source, result);
         }
 
+        /// <summary>
+        /// Test method for calculating the X gradient in a specific scenario with an expected result.
+        /// </summary>
         [TestMethod]
         public void CalculateXGradient_SomeTestScenario_ExpectedResult()
         {
@@ -80,6 +97,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(expectedXGradient, result);
         }
 
+        /// <summary>
+        /// Test method for calculating the Y gradient in a specific scenario with an expected result.
+        /// </summary>
         [TestMethod]
         public void CalculateYGradient_SomeTestScenario_ExpectedResult()
         {
@@ -100,6 +120,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(expectedXGradient, result);
         }
 
+        /// <summary>
+        /// Test method for calculating the Y gradient in another specific scenario with an expected result.
+        /// </summary>
         [TestMethod]
         public void CalculateYGradient_SomeTestScenario_ExpectedResult2()
         {
@@ -120,6 +143,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(expectedXGradient, result);
         }
 
+        /// <summary>
+        /// Test method for calculating the magnitude of the gradient in a specific scenario with an expected result.
+        /// </summary>
         [TestMethod]
         public void CalculateGradientMagnitude_SomeTestScenario_ExpectedResult()
         {
@@ -133,6 +159,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(5, result, 0.001); // Using a delta for double comparison
         }
 
+        /// <summary>
+        /// Test method for calculating the new pixel value with a gradient magnitude within the range.
+        /// </summary>
         [TestMethod]
         public void CalculateNewPixelValue_GradientMagnitudeInRange_ReturnsMagnitude()
         {
@@ -146,6 +175,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(127, result);
         }
 
+        /// <summary>
+        /// Test method for calculating the new pixel value with a gradient magnitude below the range.
+        /// </summary>
         [TestMethod]
         public void CalculateNewPixelValue_GradientMagnitudeBelowRange_ReturnsMinimumValue()
         {
@@ -159,6 +191,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(0, result);
         }
 
+        /// <summary>
+        /// Test method for calculating the new pixel value with a gradient magnitude above the range.
+        /// </summary>
         [TestMethod]
         public void CalculateNewPixelValue_GradientMagnitudeAboveRange_ReturnsMaximumValue()
         {
@@ -171,8 +206,6 @@ namespace ProjetAMTC_Test
             // Assert
             Assert.AreEqual(255, result);
         }
-
-        
     }
 }
 
