@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProjetAMTC
 {
+    /// <summary>
+    /// A static class that defines various matrices used for image processing operations (edge detection).
+    /// </summary>
     public static class Matrix
     {
         public static double[,] Laplacian3x3

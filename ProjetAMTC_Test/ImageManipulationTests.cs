@@ -6,9 +6,15 @@ using ProjetAMTC;
 
 namespace ProjetAMTC_Test
 {
+    /// <summary>
+    /// Test class for the ImageManipulation class. ChatGPT was used to generate certain tests.
+    /// </summary>
     [TestClass]
     public class ImageManipulationTests
     {
+        /// <summary>
+        /// Test to ensure that loading an image from a valid path is successful.
+        /// </summary>
 
         [TestMethod]
         public void LoadImageFromFile_ValidFile_ShouldLoadImage()
@@ -71,6 +77,9 @@ namespace ProjetAMTC_Test
             Assert.IsNotNull(loadedImage);
         }
 
+        /// <summary>
+        /// Test to ensure that loading an image from a non-existent path returns null.
+        /// </summary>
         [TestMethod]
         public void LoadImageFromFile_FileNotFound_ReturnsNull()
         {
@@ -89,6 +98,9 @@ namespace ProjetAMTC_Test
 
         }
 
+        /// <summary>
+        /// Test to ensure that loading an image with an invalid format returns null.
+        /// </summary>
         [TestMethod]
         public void LoadImageFromFile_InvalidImageFormat_ReturnsNull()
         {
@@ -106,6 +118,9 @@ namespace ProjetAMTC_Test
             Assert.IsNull(loadedImage);
         }
 
+        /// <summary>
+        /// Test to ensure that saving a valid image is successful.
+        /// </summary>
         [TestMethod]
         public void SaveImage_ValidImage_SaveSuccessful()
         {
@@ -122,7 +137,9 @@ namespace ProjetAMTC_Test
             imageSaver.Received(1).SaveImage(imageToSave, filePath, format);
         }
 
-
+        /// <summary>
+        /// Test to ensure that saving an image with an invalid format throws an exception.
+        /// </summary>
         [TestMethod]
         public void SaveImage_InvalidImageFormat_ThrowsException()
         {
@@ -136,12 +153,15 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<ArgumentException>(() => imageSaver.SaveImage(imageToSave, filePath, format));
         }
 
+        /// <summary>
+        /// Test to ensure that saving an image to a non-writable directory throws an exception.
+        /// </summary>
         [TestMethod]
         public void SaveImage_FilePathNotWritable_ThrowsException()
         {
             // Arrange
-            IImageSaver imageSaver = new ImageSaver(); // Use the real implementation
-            Bitmap imageToSave = new Bitmap(100, 100); // Create a sample image
+            IImageSaver imageSaver = new ImageSaver();
+            Bitmap imageToSave = new Bitmap(100, 100);
             string filePath = "nonexistentDirectory/output.jpg"; // Specify a non-existent directory
             ImageFormat format = ImageFormat.Jpeg; // Specify the image format
 
@@ -149,6 +169,9 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<UnauthorizedAccessException>(() => imageSaver.SaveImage(imageToSave, filePath, format));
         }
 
+        /// <summary>
+        /// Test to ensure that copying to a square canvas from a wider image returns a proportional image.
+        /// </summary>
         [TestMethod]
         public void CopyToSquareCanvas_WiderImage_ShouldReturnProportionalImage()
         {
@@ -163,6 +186,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(33, result.Height); // (100 / 150) * 50 = 33.33, rounded down to 33
         }
 
+        /// <summary>
+        /// Test to ensure that copying to a square canvas from a taller image returns a proportional image.
+        /// </summary>
         [TestMethod]
         public void CopyToSquareCanvas_TallerImage_ShouldReturnProportionalImage()
         {
@@ -177,6 +203,9 @@ namespace ProjetAMTC_Test
             Assert.AreEqual(50, result.Height);
         }
 
+        /// <summary>
+        /// Test to ensure that attempting to copy to a square canvas with zero width throws an exception.
+        /// </summary>
         [TestMethod]
         public void CopyToSquareCanvas_ZeroWidth_ShouldThrowArgumentException()
         {
@@ -188,6 +217,9 @@ namespace ProjetAMTC_Test
         }
 
 
+        /// <summary>
+        /// Test to ensure that attempting to copy to a square canvas with a negative width throws an exception.
+        /// </summary>
         [TestMethod]
         public void CopyToSquareCanvas_NegativeWidth_ShouldThrowArgumentException()
         {
@@ -198,6 +230,10 @@ namespace ProjetAMTC_Test
             Assert.ThrowsException<ArgumentException>(() => image.CopyToSquareCanvas(-50));
         }
 
+        /// <summary>
+        /// BY GPT
+        /// Test to ensure that saving an image to a directory with restricted access throws an UnauthorizedAccessException.
+        /// </summary>
         [TestMethod]
         public void SaveImage_PermissionDenied_ThrowsUnauthorizedAccessException()
         {
@@ -210,12 +246,7 @@ namespace ProjetAMTC_Test
             // Act & Assert
             Assert.ThrowsException<UnauthorizedAccessException>(() => imageSaver.SaveImage(image, restrictedDirectoryPath, format));
         }
-
     }
-
-    
-
-
 }
 
        

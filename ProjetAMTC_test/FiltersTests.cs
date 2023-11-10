@@ -6,10 +6,15 @@ using System.Reflection;
 
 namespace ProjetAMTC_Test
 {
+    /// <summary>
+    /// Test class for the Filters class.
+    /// </summary>
     [TestClass]
     public class FiltersTests
     {
-        // Test to ensure that the ApplyNightFilter method is called with the expected arguments
+        /// <summary>
+        /// Test to ensure that the ApplyNightFilter method is called with the expected arguments.
+        /// </summary>
         [TestMethod]
         public void ApplyNightFilter_CallsApplyNightFilterMethodWithExpectedArguments()
         {
@@ -27,7 +32,9 @@ namespace ProjetAMTC_Test
             filterManager.Received().ApplyNightFilter(baseImage, 2, 3, 4, 5);
         }
 
-        // Test to ensure that the ApplyRainbowFilter method is called with the expected arguments
+        // <summary>
+        /// Test to ensure that the ApplyRainbowFilter method is called with the expected arguments.
+        /// </summary>
         [TestMethod]
         public void ApplyRainbowFilter_CallsApplyNightFilterMethodWithExpectedArguments()
         {
@@ -45,7 +52,9 @@ namespace ProjetAMTC_Test
             filterManager.Received().ApplyRainbowFilter(baseImage);
         }
 
-        // Test to ensure that the ApplyBlackWhiteFilter method is called with the expected arguments
+        /// <summary>
+        /// Test to ensure that the ApplyBlackWhiteFilter method is called with the expected arguments.
+        /// </summary>
         [TestMethod]
         public void ApplyBlackWhiteFilter_CallsApplyNightFilterMethodWithExpectedArguments()
         {
@@ -63,7 +72,9 @@ namespace ProjetAMTC_Test
             filterManager.Received().ApplyBlackWhiteFilter(baseImage);
         }
 
-        // Test to ensure that applying the Night filter results in a different image than the original
+        /// <summary>
+        /// Test to ensure that applying the Night filter results in a different image than the original.
+        /// </summary>
         [TestMethod]
         public void ApplyNightFilter_DifferentImagesAfterFiltering()
         {
@@ -81,7 +92,9 @@ namespace ProjetAMTC_Test
         }
 
 
-        // Test to ensure that applying the Rainbow filter results in a different image than the original
+        /// <summary>
+        /// Test to ensure that applying the Rainbow filter results in a different image than the original.
+        /// </summary>
         [TestMethod]
         public void ApplyRainbowFilter_DifferentImagesAfterFiltering()
         {
@@ -98,7 +111,9 @@ namespace ProjetAMTC_Test
             Assert.AreNotEqual(baseImage, filteredImage);
         }
 
-        // Test to ensure that applying the Black and White filter results in a different image than the original
+        /// <summary>
+        /// Test to ensure that applying the Black and White filter results in a different image than the original.
+        /// </summary>
         [TestMethod]
         public void ApplyBlackWhiteFilter_DifferentImagesAfterFiltering()
         {
@@ -117,7 +132,9 @@ namespace ProjetAMTC_Test
             Assert.AreNotEqual(filteredImage, baseImage);
         }
 
-        // Test to ensure that applying the Night filter with different parameters twice produces two different results
+        /// <summary>
+        /// Test to ensure that applying the Night filter with different parameters twice produces two different results.
+        /// </summary>
         [TestMethod]
         public void ApplyNightFilter_DifferentResultsWithDifferentParameters()
         {
@@ -137,7 +154,9 @@ namespace ProjetAMTC_Test
             Assert.AreNotEqual(firstFiltered, secondFiltered);
         }
 
-        // Test to ensure that applying multiple filters in sequence produces different results
+        /// <summary>
+        /// Test to ensure that applying multiple filters in sequence produces different results.
+        /// </summary>
         [TestMethod]
         public void ApplySeveralFilters_DifferentResultsAfterMultipleFilters()
         {

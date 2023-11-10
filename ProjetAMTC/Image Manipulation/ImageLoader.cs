@@ -9,8 +9,16 @@ using System.Windows.Forms;
 
 namespace ProjetAMTC
 {
+    /// <summary>
+    /// Class responsible for loading images from file.
+    /// </summary>
     public class ImageLoader : IImageLoader
     {
+        /// <summary>
+        /// Loads an image from the specified file path.
+        /// </summary>
+        /// <param name="filePath">The path to the image file.</param>
+        /// <returns>The loaded image, or null if an exception occurs during loading.</returns>
         public Bitmap LoadImageFromFile(string filePath)
         {
             Bitmap loadedImage = null;
@@ -35,16 +43,11 @@ namespace ProjetAMTC
             }
             catch (Exception ex)
             {
-              
+
                 Console.WriteLine("Error loading the image: " + ex.Message);
                 throw; // Rethrow the exception to maintain the original behavior
             }
             return loadedImage;
         }
-
-
-
-
     }
-
 }

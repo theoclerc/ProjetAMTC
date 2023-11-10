@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,12 +7,23 @@ using System.Threading.Tasks;
 
 namespace ProjetAMTC.Edges_Detections
 {
+    /// <summary>
+    /// Implementation of the <see cref="IEdgeDetectionManager"/> interface for applying edge detection on Bitmap images.
+    /// </summary>
     public class EdgeDetectionManager : IEdgeDetectionManager
     {
         const double RedWeight = 0.3;
         const double GreenWeight = 0.59;
         const double BlueWieght = 0.11;
 
+        /// <summary>
+        /// Applies edge detection to the input image using the specified matrices for x and y gradients.
+        /// </summary>
+        /// <param name="source">The input Bitmap image.</param>
+        /// <param name="xMatrix">The matrix for x gradients.</param>
+        /// <param name="yMatrix">The matrix for y gradients.</param>
+        /// <param name="preview">Flag indicating whether to return a preview image.</param>
+        /// <returns>The resulting edge-detected Bitmap image.</returns>
         public Bitmap ApplyEdgeDetection(Bitmap source, double[,] xMatrix, double[,] yMatrix, bool preview)
         {
 
@@ -58,7 +69,14 @@ namespace ProjetAMTC.Edges_Detections
             return preview ? new Bitmap(result) : result;
         }
 
-        // Calculate the x-gradient for a given pixel
+        /// <summary>
+        /// Calculates the x-gradient for a given pixel using a specified x-gradient matrix.
+        /// </summary>
+        /// <param name="source">The source image.</param>
+        /// <param name="xMatrix">The x-gradient matrix.</param>
+        /// <param name="x">The x-coordinate of the pixel.</param>
+        /// <param name="y">The y-coordinate of the pixel.</param>
+        /// <returns>The calculated x-gradient value.</returns>
         public double CalculateXGradient(Bitmap source, double[,] xMatrix, int x, int y)
         {
             double xGradient = 0.0;
@@ -77,7 +95,14 @@ namespace ProjetAMTC.Edges_Detections
             return xGradient;
         }
 
-        // Calculate the y-gradient for a given pixel
+        /// <summary>
+        /// Calculates the y-gradient for a given pixel using a specified y-gradient matrix.
+        /// </summary>
+        /// <param name="source">The source image.</param>
+        /// <param name="yMatrix">The y-gradient matrix.</param>
+        /// <param name="x">The x-coordinate of the pixel.</param>
+        /// <param name="y">The y-coordinate of the pixel.</param>
+        /// <returns>The calculated y-gradient value.</returns>
         public double CalculateYGradient(Bitmap source, double[,] yMatrix, int x, int y)
         {
             double yGradient = 0.0;
@@ -96,17 +121,28 @@ namespace ProjetAMTC.Edges_Detections
             return yGradient;
         }
 
-        // Calculate the magnitude of the gradient from its x and y components
+        /// <summary>
+        /// Calculates the magnitude of the gradient from its x and y components.
+        /// </summary>
+        /// <param name="xGradient">The x-gradient component.</param>
+        /// <param name="yGradient">The y-gradient component.</param>
+        /// <returns>The calculated magnitude of the gradient.</returns>
         public double CalculateGradientMagnitude(double xGradient, double yGradient)
         {
             return Math.Sqrt(xGradient * xGradient + yGradient * yGradient);
         }
 
-        // Calculate the new pixel value based on the gradient magnitude
+        /// <summary>
+        /// Calculates the new pixel value based on the gradient magnitude.
+        /// Ensures the value is within the 0-255 range.
+        /// </summary>
+        /// <param name="gradientMagnitude">The magnitude of the gradient.</param>
+        /// <returns>The calculated new pixel value.</returns>
         public int CalculateNewPixelValue(double gradientMagnitude)
         {
             // Ensure the value is within the 0-255 range
             return (int)Math.Max(0, Math.Min(255, gradientMagnitude));
         }
+
     }
 }
