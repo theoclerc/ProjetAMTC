@@ -28,7 +28,6 @@ namespace ProjetAMTC_Test
 
             // Assert
             Assert.IsNotNull(loadedImage);
-            // Ajoutez d'autres assertions selon vos besoins pour vérifier que l'image est chargée correctement.
         }
 
         /// <summary>
