@@ -29,14 +29,30 @@ namespace ProjetAMTC
                     loadedImage = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
                 }
             }
+            catch (FileNotFoundException ex)
+            {
+           
+                Console.WriteLine("File not found: " + ex.Message);
+                throw; // Rethrow the exception to maintain the original behavior
+            }
+            catch (ArgumentException ex)
+            {
+                
+                Console.WriteLine("Invalid image format: " + ex.Message);
+                throw; // Rethrow the exception to maintain the original behavior
+            }
             catch (Exception ex)
             {
-                // Handle any exceptions, e.g., file not found or invalid image format
-                // You can log the exception or show an error message to the user
-                MessageBox.Show("Error loading the image: " + ex.Message);
+              
+                Console.WriteLine("Error loading the image: " + ex.Message);
+                throw; // Rethrow the exception to maintain the original behavior
             }
             return loadedImage;
+        }
 
         }
+
+
+
     }
 }

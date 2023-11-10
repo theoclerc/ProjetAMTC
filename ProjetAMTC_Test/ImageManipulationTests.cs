@@ -15,7 +15,43 @@ namespace ProjetAMTC_Test
         /// <summary>
         /// Test to ensure that loading an image from a valid path is successful.
         /// </summary>
+
+        public void LoadImage_ValidFilePath_LoadsImageSuccessfully()
+        {
+            // Arrange
+            var imageLoader = new ImageLoader();
+            string validFilePath = "path/to/valid/image.jpg";
+
+            // Act
+            Bitmap loadedImage = imageLoader.LoadImageFromFile(validFilePath);
+
+            // Assert
+            Assert.IsNotNull(loadedImage);
+            Assert.IsInstanceOfType(loadedImage, typeof(Bitmap));
+        }
+
         [TestMethod]
+        public void LoadImage_InvalidFilePath_ThrowsDirectoryNotFoundException()
+        {
+            // Arrange
+            var imageLoader = new ImageLoader();
+            string invalidFilePath = "path/to/invalid/image.jpg";
+
+            // Act & Assert
+            Assert.ThrowsException<DirectoryNotFoundException>(() => imageLoader.LoadImageFromFile(invalidFilePath));
+        }
+
+        [TestMethod]
+        public void LoadImage_NullFilePath_ThrowsArgumentNullException()
+        {
+            // Arrange
+            var imageLoader = new ImageLoader();
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentNullException>(() => imageLoader.LoadImageFromFile(null));
+        }
+
+    [TestMethod]
         public void LoadImageFromFile_ValidPath_Success()
         {
             // Arrange
